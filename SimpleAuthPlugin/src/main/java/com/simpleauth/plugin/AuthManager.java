@@ -283,8 +283,8 @@ public class AuthManager {
      * @param player The player to apply restrictions to
      */
     public void applyRestrictions(Player player) {
-        // Apply blindness effect if configured
-        if (plugin.getConfig().getBoolean("restrictions.applyBlindness", true)) {
+        // Apply blindness effect only for login (not for register)
+        if (plugin.getConfig().getBoolean("restrictions.applyBlindness", true) && isRegistered(player.getName())) {
             player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, Integer.MAX_VALUE, 1, false, false));
         }
         

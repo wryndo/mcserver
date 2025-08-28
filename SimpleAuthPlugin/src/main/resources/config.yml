@@ -48,8 +48,6 @@ login:
   loginTimeout: 300
   # Whether to kick players on wrong password
   kickOnWrongPassword: true
-  # Message to send on wrong password
-  wrongPasswordMessage: "Wrong password!"
 
 # Session Settings
 session:
@@ -105,29 +103,51 @@ messages:
   # Prefix for all messages
   prefix: "&8[&6SimpleAuth&8] &r"
   # Login message
-  login: "&aPlease login with /login <password>"
+  login: "&6Please log in with &f/login <password>"
   # Register message
-  register: "&aPlease register with /register <password> [email]"
+  register: "&6Please register with &f/register <password> <email>"
   # Successful login message
-  loginSuccess: "&aYou have been logged in successfully!"
+  loginSuccess: "&2Login successful!"
   # Successful registration message
-  registerSuccess: "&aYou have been registered successfully!"
+  registerSuccess: "&2Registration successful!"
   # Already logged in message
   alreadyLoggedIn: "&cYou are already logged in!"
   # Already registered message
-  alreadyRegistered: "&cYou are already registered!"
+  alreadyRegistered: "&cThis username is already registered!"
   # Not registered message
-  notRegistered: "&cYou are not registered!"
+  notRegistered: "&cThis username is not registered!"
   # Not logged in message
   notLoggedIn: "&cYou are not logged in!"
   # Password changed message
-  passwordChanged: "&aYour password has been changed successfully!"
+  passwordChanged: "&2Your password has been changed successfully!"
   # Logged out message
-  loggedOut: "&aYou have been logged out successfully!"
+  loggedOut: "&2You have been logged out successfully!"
   # Unregistered message
-  unregistered: "&aYour account has been unregistered successfully!"
+  unregistered: "&2Your account has been unregistered successfully!"
   # Reload message
-  reloaded: "&aConfiguration reloaded successfully!"
+  reloaded: "&2Configuration reloaded successfully!"
+  # Wrong password message
+  wrongPassword: "&cWrong password!"
+  # Login timeout message
+  loginTimeout: "&cLogin timeout exceeded!"
+  # Session resumed message
+  sessionResumed: "&2Session resumed!"
+  # Account not activated message
+  accountNotActivated: "&cYour account is not activated yet!"
+  # Email required message
+  emailRequired: "&cEmail address is required for registration!"
+  # Invalid email message
+  invalidEmail: "&cInvalid email address!"
+  # Too many accounts message
+  tooManyAccounts: "&cYou have registered too many accounts!"
+  # Password too short message
+  passwordTooShort: "&cPassword is too short!"
+  # Password too long message
+  passwordTooLong: "&cPassword is too long!"
+  # Password unsafe message
+  passwordUnsafe: "&cThe chosen password is unsafe!"
+  # Welcome message
+  welcome: "&2Welcome to the server!"
 
 # Premium (Paid Minecraft) Account Settings
 premium:
@@ -135,4 +155,3 @@ premium:
   enabled: true
   # Whether to force premium users to use their Minecraft username
   forceUsername: true
-

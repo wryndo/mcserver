@@ -55,11 +55,11 @@ public class LoginCommand implements CommandExecutor {
         
         // Check if password is correct
         if (!authManager.checkPassword(player.getName(), password)) {
-            MessageUtil.sendMessage(player, "wrongPasswordMessage");
+            MessageUtil.sendMessage(player, "wrongPassword");
             
             // Kick player if configured
             if (plugin.getConfig().getBoolean("login.kickOnWrongPassword", true)) {
-                String kickMessage = MessageUtil.formatMessage(plugin.getConfig().getString("login.wrongPasswordMessage", "Wrong password!"));
+                String kickMessage = MessageUtil.formatMessage(plugin.getConfig().getString("messages.wrongPassword", "&cWrong password!"));
                 player.kick(net.kyori.adventure.text.Component.text(kickMessage));
             }
             

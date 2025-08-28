@@ -56,7 +56,7 @@ public class RegisterCommand implements CommandExecutor {
         
         // Check if email is required
         if (plugin.getConfig().getBoolean("registration.requireEmail", false) && email == null) {
-            MessageUtil.sendRawMessage(player, "&cYou must provide an email address!");
+            MessageUtil.sendMessage(player, "emailRequired");
             return true;
         }
         
@@ -65,12 +65,12 @@ public class RegisterCommand implements CommandExecutor {
         int maxLength = plugin.getConfig().getInt("registration.maxPasswordLength", 30);
         
         if (password.length() < minLength) {
-            MessageUtil.sendRawMessage(player, "&cPassword is too short! Minimum length is " + minLength + " characters.");
+            MessageUtil.sendMessage(player, "passwordTooShort");
             return true;
         }
         
         if (password.length() > maxLength) {
-            MessageUtil.sendRawMessage(player, "&cPassword is too long! Maximum length is " + maxLength + " characters.");
+            MessageUtil.sendMessage(player, "passwordTooLong");
             return true;
         }
         
@@ -81,7 +81,7 @@ public class RegisterCommand implements CommandExecutor {
             int accountsForIp = authManager.getDataSource().countAccountsForIp(ip);
             
             if (accountsForIp >= maxAccountsPerIp) {
-                MessageUtil.sendRawMessage(player, "&cYou have reached the maximum number of accounts per IP!");
+                MessageUtil.sendMessage(player, "tooManyAccounts");
                 return true;
             }
         }
@@ -96,4 +96,3 @@ public class RegisterCommand implements CommandExecutor {
         return true;
     }
 }
-

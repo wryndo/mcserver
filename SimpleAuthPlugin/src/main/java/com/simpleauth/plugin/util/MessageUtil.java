@@ -1,6 +1,9 @@
 package com.simpleauth.plugin.util;
 
-import org.bukkit.ChatColor;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -10,6 +13,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class MessageUtil {
     private static JavaPlugin plugin;
     private static String prefix;
+    private static final LegacyComponentSerializer LEGACY_SERIALIZER = LegacyComponentSerializer.builder()
+            .character('&')
+            .hexColors()
+            .build();
+    private static final MiniMessage MINI_MESSAGE = MiniMessage.miniMessage();
 
     /**
      * Initialize the message utility
@@ -18,7 +26,7 @@ public class MessageUtil {
      */
     public static void init(JavaPlugin plugin) {
         MessageUtil.plugin = plugin;
-        prefix = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.prefix", "&8[&6SimpleAuth&8] &r"));
+        prefix = formatMessage(plugin.getConfig().getString("messages.prefix", "&8[&6SimpleAuth&8] &r"));
     }
 
     /**
@@ -28,7 +36,8 @@ public class MessageUtil {
      * @param message The message
      */
     public static void sendMessage(Player player, String message) {
-        player.sendMessage(prefix + ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages." + message, message)));
+        String configMessage = plugin.getConfig().getString("messages." + message, message);
+        player.sendMessage(Component.text(prefix).append(LEGACY_SERIALIZER.deserialize(configMessage)));
     }
 
     /**
@@ -38,7 +47,7 @@ public class MessageUtil {
      * @param message The message
      */
     public static void sendRawMessage(Player player, String message) {
-        player.sendMessage(prefix + ChatColor.translateAlternateColorCodes('&', message));
+        player.sendMessage(Component.text(prefix).append(LEGACY_SERIALIZER.deserialize(message)));
     }
 
     /**
@@ -48,7 +57,11 @@ public class MessageUtil {
      * @return The formatted message
      */
     public static String formatMessage(String message) {
-        return ChatColor.translateAlternateColorCodes('&', message);
+        if (message == null) {
+            return "";
+        }
+        // Convert legacy color codes to plain text with colors
+        return LEGACY_SERIALIZER.serialize(LEGACY_SERIALIZER.deserialize(message));
     }
 
     /**
@@ -58,7 +71,8 @@ public class MessageUtil {
      * @return The message
      */
     public static String getMessage(String key) {
-        return ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages." + key, key));
+        String configMessage = plugin.getConfig().getString("messages." + key, key);
+        return formatMessage(configMessage);
     }
 
     /**

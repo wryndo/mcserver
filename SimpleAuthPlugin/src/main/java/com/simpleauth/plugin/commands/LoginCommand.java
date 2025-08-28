@@ -59,7 +59,8 @@ public class LoginCommand implements CommandExecutor {
             
             // Kick player if configured
             if (plugin.getConfig().getBoolean("login.kickOnWrongPassword", true)) {
-                player.kickPlayer(MessageUtil.formatMessage(plugin.getConfig().getString("login.wrongPasswordMessage", "Wrong password!")));
+                String kickMessage = MessageUtil.formatMessage(plugin.getConfig().getString("login.wrongPasswordMessage", "Wrong password!"));
+                player.kick(net.kyori.adventure.text.Component.text(kickMessage));
             }
             
             return true;
@@ -73,4 +74,3 @@ public class LoginCommand implements CommandExecutor {
         return true;
     }
 }
-

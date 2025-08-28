@@ -331,5 +331,22 @@ public class AuthManager {
     public int getAuthenticatedCount() {
         return authenticatedPlayers.size();
     }
+    
+    /**
+     * Get the data source
+     * 
+     * @return The data source
+     */
+    public AuthDataSource getDataSource() {
+        return dataSource;
+    }
+    
+    /**
+     * Get the session manager
+     * 
+     * @return The session manager
+     */
+    public SessionManager getSessionManager() {
+        return sessionManager;
+    }
 }
-

@@ -59,7 +59,7 @@ public class PlayerProtectionListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
-    public void onPlayerChat(AsyncPlayerChatEvent event) {
+    public void onPlayerChat(PlayerChatEvent event) {
         if (isProtected(event.getPlayer()) && !plugin.getConfig().getBoolean("restrictions.allowChat", false)) {
             // Cancel chat if not allowed
             event.setCancelled(true);
@@ -165,4 +165,3 @@ public class PlayerProtectionListener implements Listener {
         }
     }
 }
-

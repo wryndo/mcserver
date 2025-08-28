@@ -1,0 +1,138 @@
+# SimpleAuthPlugin Configuration
+
+# Database Settings
+database:
+  # Database type: MYSQL, SQLITE, YAML
+  type: SQLITE
+  # MySQL settings (only used if type is MYSQL)
+  mysql:
+    host: localhost
+    port: 3306
+    database: simpleauth
+    username: root
+    password: password
+    # Connection pool settings
+    pool:
+      maxPoolSize: 10
+      minIdle: 5
+      maxLifetime: 1800000
+      connectionTimeout: 5000
+  # SQLite settings (only used if type is SQLITE)
+  sqlite:
+    filename: simpleauth.db
+  # Table name for auth data
+  tableName: simpleauth
+
+# Registration Settings
+registration:
+  # Whether registration is enabled
+  enabled: true
+  # Whether registration is forced (players must register)
+  forced: true
+  # Maximum number of accounts per IP address (0 = unlimited)
+  maxAccountsPerIp: 3
+  # Minimum length of password
+  minPasswordLength: 4
+  # Maximum length of password
+  maxPasswordLength: 30
+  # Whether to require an email for registration
+  requireEmail: false
+  # Whether to verify email addresses
+  verifyEmail: false
+
+# Login Settings
+login:
+  # Maximum number of login attempts before timeout
+  maxLoginAttempts: 5
+  # Timeout in seconds after max login attempts
+  loginTimeout: 300
+  # Whether to kick players on wrong password
+  kickOnWrongPassword: true
+  # Message to send on wrong password
+  wrongPasswordMessage: "Wrong password!"
+
+# Session Settings
+session:
+  # Whether to enable sessions
+  enabled: true
+  # Session timeout in minutes
+  timeout: 60
+  # Whether to validate IP for sessions
+  validateIp: true
+
+# Spawn Settings
+spawn:
+  # Whether to teleport unauthenticated players to spawn
+  teleportToSpawn: true
+  # Whether to teleport players back to their original location after login
+  teleportBackAfterLogin: true
+  # Whether to set a first spawn for new players
+  useFirstSpawn: false
+  # First spawn coordinates (only used if useFirstSpawn is true)
+  firstSpawn:
+    world: world
+    x: 0
+    y: 64
+    z: 0
+    yaw: 0
+    pitch: 0
+
+# Restriction Settings
+restrictions:
+  # Whether to allow chat for unauthenticated players
+  allowChat: false
+  # Whether to hide chat for unauthenticated players
+  hideChat: true
+  # Whether to allow movement for unauthenticated players
+  allowMovement: false
+  # Allowed movement radius if movement is allowed
+  allowedMovementRadius: 100
+  # Whether to protect inventory before login
+  protectInventory: true
+  # Allowed commands for unauthenticated players
+  allowedCommands:
+    - /login
+    - /register
+    - /l
+    - /reg
+  # Whether to force survival mode
+  forceSurvivalMode: true
+  # Whether to apply blindness effect
+  applyBlindness: true
+
+# Message Settings
+messages:
+  # Prefix for all messages
+  prefix: "&8[&6SimpleAuth&8] &r"
+  # Login message
+  login: "&aPlease login with /login <password>"
+  # Register message
+  register: "&aPlease register with /register <password> [email]"
+  # Successful login message
+  loginSuccess: "&aYou have been logged in successfully!"
+  # Successful registration message
+  registerSuccess: "&aYou have been registered successfully!"
+  # Already logged in message
+  alreadyLoggedIn: "&cYou are already logged in!"
+  # Already registered message
+  alreadyRegistered: "&cYou are already registered!"
+  # Not registered message
+  notRegistered: "&cYou are not registered!"
+  # Not logged in message
+  notLoggedIn: "&cYou are not logged in!"
+  # Password changed message
+  passwordChanged: "&aYour password has been changed successfully!"
+  # Logged out message
+  loggedOut: "&aYou have been logged out successfully!"
+  # Unregistered message
+  unregistered: "&aYour account has been unregistered successfully!"
+  # Reload message
+  reloaded: "&aConfiguration reloaded successfully!"
+
+# Premium (Paid Minecraft) Account Settings
+premium:
+  # Whether to enable premium (paid Minecraft) account auto-login
+  enabled: true
+  # Whether to force premium users to use their Minecraft username
+  forceUsername: true
+

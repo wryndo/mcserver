@@ -1,0 +1,72 @@
+name: SimpleAuthPlugin
+version: '${project.version}'
+main: com.simpleauth.plugin.SimpleAuthPlugin
+api-version: '1.21'
+authors: [SimpleAuthTeam]
+description: A simple authentication plugin for Minecraft servers
+website: https://github.com/SimpleAuth
+
+commands:
+  login:
+    description: Login to the server
+    usage: /login <password>
+    aliases: [l]
+  register:
+    description: Register an account
+    usage: /register <password> [email]
+    aliases: [reg]
+  changepassword:
+    description: Change your password
+    usage: /changepassword <oldPassword> <newPassword>
+    aliases: [changepw, cp]
+  logout:
+    description: Logout from the server
+    usage: /logout
+  unregister:
+    description: Unregister your account
+    usage: /unregister <password>
+  authreload:
+    description: Reload the plugin configuration
+    usage: /authreload
+    permission: simpleauth.admin.reload
+  authstatus:
+    description: Check the authentication status
+    usage: /authstatus
+    permission: simpleauth.admin.status
+
+permissions:
+  simpleauth.admin.*:
+    description: Gives access to all SimpleAuth admin commands
+    children:
+      simpleauth.admin.reload: true
+      simpleauth.admin.status: true
+      simpleauth.admin.unregister: true
+  simpleauth.admin.reload:
+    description: Allows reloading the plugin configuration
+    default: op
+  simpleauth.admin.status:
+    description: Allows checking the authentication status
+    default: op
+  simpleauth.admin.unregister:
+    description: Allows unregistering other players
+    default: op
+  simpleauth.player.*:
+    description: Gives access to all SimpleAuth player commands
+    children:
+      simpleauth.player.login: true
+      simpleauth.player.register: true
+      simpleauth.player.changepassword: true
+      simpleauth.player.logout: true
+  simpleauth.player.login:
+    description: Allows logging in
+    default: true
+  simpleauth.player.register:
+    description: Allows registering
+    default: true
+  simpleauth.player.changepassword:
+    description: Allows changing password
+    default: true
+  simpleauth.player.logout:
+    description: Allows logging out
+    default: true
+
